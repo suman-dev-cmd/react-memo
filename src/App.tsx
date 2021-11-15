@@ -10,6 +10,7 @@ interface IrowDataProps {
   price: number;
 }
 const App = () => {
+  
   const [rowData, setRowData] = useState<IrowDataProps[]>();
   const [gridApi, setGridApi] = useState({});
   const gridRef: any = useRef(null);
@@ -69,6 +70,9 @@ const App = () => {
   };
 
   const setSideBarVisible = () => setShow(!show);
+  const onGridReady =(params:any)=>{
+    console.log('on grid parama',params);
+  }
   return (
     
     <div className="ag-theme-alpine" style={{ height: 400, width: '100%' }}>
@@ -93,7 +97,7 @@ const App = () => {
         rowData={rowData}
         pagination={true}
         rowSelection="multiple"
-        onGridReady={(params) => setGridApi(params.api)}
+        onGridReady={onGridReady}
         groupSelectsChildren={true}
         statusBar={statusBar}
         sideBar={show}
